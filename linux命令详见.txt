@@ -1,0 +1,103 @@
+ls 查看当前的文件,
+ls 只列出文件名或目录名
+ll 命令列出的信息更加详细，有时间，是否可读写等信息 
+
+ps 报告当前活动进程的快照
+	-e和-A都表示列出所有的进程
+	-f显示树装结构,表示程序间的相互关系.
+ps -ef 以树型结构显示终端的所有进程
+
+管道" | "就是将前面命令输出作为管道后面命令的输入
+
+grep（global search regular expression(RE) and print out the line，全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，
+它能使用正则表达式搜索文本，并把匹配的行打印出来。
+
+ps -ef|grep java 
+以树型结构列出全部当前活动进程,在此基础上搜索筛选出含有java的进程
+
+
+
+车贷路径:
+cd /export/home/tomcat/domains/chedai.hexinxiaodai.com/server1/logs
+查看日志: 
+tail -f catalina.out
+
+p2p后台日志路径:
+cd /export/home/tomcat/domains/java.service.hexindai.com/server1/logs/
+
+
+
+
+ 
+
+
+=========================================================
+Linux环境部署~~~~~~~~~~~~~~~~~~~~~~
+
+更新程序
+cd /export/data/tomcatRoot/chedai.hexinxiaodai.com
+
+第一步:
+	删除旧版程序
+	rm -rf *-INF
+	rm -rf resources
+
+第二部:
+	上传WAR包
+	rz
+
+第三部:====================
+	解压WAR包
+	unzip car-web.war
+
+	rm car-web.war
+
+第四部:
+	删除配置文件
+	cd /export/data/tomcatRoot/chedai.hexinxiaodai.com/WEB-INF/classes
+	rm -rf applicationContext.xml application.properties project.properties
+
+第五步:
+	上传对应环境配置文件
+	rz
+
+第六步:
+	程序更新完毕
+	服务启停
+	项目位置：cd /export/data/tomcatRoot/chedai.hexinxiaodai.com
+	ps -ef|grep java
+	kill -9 id
+
+第七部:
+	tomcat重启： 
+	sh /export/home/tomcat/domains/chedai.hexinxiaodai.com/server1/bin/start.sh
+
+============================================================================
+更新JOB：
+cd /export/data/tomcatRoot/carjob
+
+删除旧版程序
+rm -rf *-INF
+
+上传WAR包
+rz
+
+解压WAR包
+unzip car-jobs.war
+
+rm car-jobs.war
+
+删除配置文件
+cd /export/data/tomcatRoot/carjob/WEB-INF/classes
+rm -rf applicationContext.xml application.properties
+
+上传对应环境配置文件
+rz
+
+程序更新完毕 
+sh /export/home/tomcat/domains/carjob/server1/bin/start.sh
+
+文件位置
+cd /export/home/tomcat/domains/carjob/server1/conf/context.xml 
+cd /export/home/tomcat/domains/chedai.hexinxiaodai.com/server1/logs/
+cd /export/home/tomcat/domains/carjob/server1/logs/ 
